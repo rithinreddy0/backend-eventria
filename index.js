@@ -24,7 +24,7 @@ const app = express();
 //middle wares
 app.use(bodyparser.json());
 app.use(cors({
-    origin: 'http://localhost:5173',  // Specify the exact origin of your frontend
+    origin: 'https://eventria-frontend.vercel.app',  // Specify the exact origin of your frontend
     credentials: true  // Allow cookies and other credentials to be sent
 }));
 app.use(express.json());

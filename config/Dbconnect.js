@@ -4,7 +4,9 @@ const mongoose = require("mongoose")
     mongoose.connect(process.env.DBURL,{}).then(()=>{
         console.log("Data base connected successfully");
     }).catch((e)=>{
-        console.log(e)
+       console.log(process.env.DBURL);
+        console.log("Error Aagaya");
+        console.log(e);
     })
 }
 module.exports =  db_connect;
