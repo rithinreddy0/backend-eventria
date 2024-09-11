@@ -68,7 +68,7 @@ exports.Ologin = async (req,res) => {
         
         }
         res.cookie("organizerAuthToken", token, {
-            httpOnly:false,
+            httpOnly:true,
             sameSite:'none',
             secure:true,
             maxAge:259200000,
