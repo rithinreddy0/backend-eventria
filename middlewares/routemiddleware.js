@@ -3,8 +3,9 @@ const dotenv = require("dotenv")
 dotenv.config();
 exports.isorganizer = async (req,res,next)=>{
     try {
+        // console.log("called")
         const {organizerAuthToken} = req.cookies;
-        // console.log(req)
+        // console.log(req.cookies)
         if(!organizerAuthToken){
             // console.log("no token")
             return res.status(401).json({
@@ -52,8 +53,9 @@ exports.isHod = async (req,res,next)=>{
 }
 exports.isStudent = async(req,res,next)=>{
     try {
+        
         const {studentAuthToken} = req.cookies;
-        // console.log(studentAuthToken)
+         console.log(studentAuthToken)
         if(!studentAuthToken){
            
             return res.status(401).json({

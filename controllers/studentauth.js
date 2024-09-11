@@ -62,11 +62,13 @@ exports.Slogin = async (req,res) => {
         user.token = token;
         user.password = undefined;
         const options = {
-        expires: new Date( Date.now() + 3 * 24 * 60 * 60 * 1000),
-        httpOnly:true,
+            httpOnly:false,
+            sameSite:'none',
+            secure:true,
+            maxAge:259200000,
         
         }
-        res.cookie("cookie", token, options).status(200).json({
+        res.cookie("studentAuthToken", token, options).status(200).json({
                 success:true,
                 token,
                 user,

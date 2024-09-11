@@ -60,13 +60,22 @@ exports.Ologin = async (req,res) => {
         user.token = token;
         user.password = undefined;
         const options = {
-        expires: new Date( Date.now() + 3 * 24 * 60 * 60 * 1000),
-        httpOnly:true,
+        // expires: new Date( Date.now() + 3 * 24 * 60 * 60 * 1000),
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // Expires in 3 days
+        httpOnly: true,  // Prevents client-side JS from accessing the cookie
+        secure: true,    // Ensures cookie is sent only over HTTPS (required for SameSite=None)
+        sameSite: 'None'
         
         }
-        res.cookie("cookie", token, options).status(200).json({
+        res.cookie("organizerAuthToken", token, {
+            httpOnly:false,
+            sameSite:'none',
+            secure:true,
+            maxAge:259200000,
+        }).status(201).json({
                 success:true,
                 token,
+                
                 user,
                 message:'User Logged in successfully',
             });
