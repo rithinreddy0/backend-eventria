@@ -3,16 +3,19 @@ const dotenv = require("dotenv")
 dotenv.config();
 exports.isorganizer = async (req,res,next)=>{
     try {
-        // console.log("called")
-        const {organizerAuthToken} = req.cookies;
+        
+        // console.log(req.body)
+        const authHeader = req.body.headers['Authorization'];
+        const token = authHeader && authHeader.split(' ')[1];
+    //    console.log(req)
         // console.log(req.cookies)
-        if(!organizerAuthToken){
+        if(!token){
             // console.log("no token")
-            return res.status(401).json({
+            return res.status(403).json({
                 message:"no token found"
             })
         }
-        const organizer = await jwt.verify(organizerAuthToken,process.env.JWT_SECRET);
+        const organizer = await jwt.verify(token,process.env.JWT_SECRET);
         if(!organizer){
             return res.status(402).json({
                 message:"invalid token"
@@ -29,14 +32,15 @@ exports.isorganizer = async (req,res,next)=>{
 }
 exports.isHod = async (req,res,next)=>{
     try{
-        const {hodAuthToken} = req.cookies;
-        if(!hodAuthToken){
+        const authHeader = req.body.headers['Authorization'];
+        const token = authHeader && authHeader.split(' ')[1];
+        if(!token){
             console.log("token not found")
             return res.status(501).json({
                 message:"token not found"
             })
         }
-        const hod = await jwt.verify(hodAuthToken,process.env.JWT_SECRET)
+        const hod = await jwt.verify(token,process.env.JWT_SECRET)
         if(!hod){
             return res.status(402).json({
                 message:"invalid token"
@@ -53,21 +57,25 @@ exports.isHod = async (req,res,next)=>{
 }
 exports.isStudent = async(req,res,next)=>{
     try {
-        
-        const {studentAuthToken} = req.cookies;
-         console.log(studentAuthToken)
-        if(!studentAuthToken){
-           
+        // console.log("called b")
+        console.log(req.body)
+        const authHeader = req.body.headers['Authorization'];
+        console.log(authHeader)
+        const token = authHeader && authHeader.split(' ')[1];
+        if(!token){
+           console.log("no token")
             return res.status(401).json({
                 message:"no token found"
             })
         }
-        const student = await jwt.verify(studentAuthToken,process.env.JWT_SECRET);
+        console.log(token)
+        const student = await jwt.verify(token,process.env.JWT_SECRET);
         if(!student){
             return res.status(400).json({
                 message:"invalid token"
             })
         }
+        // console.log(student)
         // console.log(student)
         req.student = student;
         next();

@@ -28,6 +28,7 @@ exports.Slogin = async (req,res) => {
     try {
     //data fetch
         const {rollno, password} = req.body;
+        console.log(rollno,password);
     //validation on email and password
          if(!rollno || !password) {
              return res.status(400).json({
@@ -116,10 +117,11 @@ exports.allEvents = async (req,res)=>{
 }
 exports.getinfo = async (req,res)=>{
     try{
+        // console.log("called aa")
         const student = req.student;
-        console.log(student)
+        // console.log(student)
         const studentInfo = await Student.findById(student.id);
-        console.log(studentInfo)
+        // console.log(studentInfo)
         if(!studentInfo){
             return res.status(402).json({
                 message:"no account found"

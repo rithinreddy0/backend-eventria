@@ -7,6 +7,7 @@ const CryptoJS = require('crypto-js');
 require('dotenv').config();
 exports.eventapply = async (req,res)=>{
     try{
+        // console.log("object")
         const eventId = req.params.eventId;
         const event = await Event.findById({_id:eventId});
         res.status(200).json({
