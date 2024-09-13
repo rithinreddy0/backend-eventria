@@ -23,10 +23,7 @@ const app = express();
 
 //middle wares
 app.use(bodyparser.json());
-app.use(cors({
-    origin: process.env.FURL,  // Specify the exact origin of your frontend
-    credentials: true  // Allow cookies and other credentials to be sent
-}));
+app.use(cors());
 app.use(express.json());
 
 app.use(cp());
