@@ -8,7 +8,7 @@ const { validate } = require('../controllers/organizer/validate');
 const organizerRouter = Router();
 organizerRouter.post('/signup',OSignup)
 organizerRouter.post('/login',Ologin)
-organizerRouter.post("/createevent",isorganizer,createEvent);
+organizerRouter.post("/createevent",createEvent);
 organizerRouter.post("/getallevents",isorganizer,getallevets)
 organizerRouter.post("/event/:eventId",isorganizer,oevent);
 organizerRouter.post("/validate",validate)

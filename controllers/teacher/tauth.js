@@ -91,12 +91,3 @@ exports.Tlogin = async (req,res) => {
             });
         }
 }
-// exports.isTeacher = async (req,res)=>{
-//     try{
-//         const 
-//     }catch(eror){
-//         res.status(500).json{
-//             message:eror.message
-//         }
-//     }
-// }

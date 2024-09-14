@@ -8,9 +8,10 @@ exports.isorganizer = async (req,res,next)=>{
         const authHeader = req.body.headers['Authorization'];
         const token = authHeader && authHeader.split(' ')[1];
     //    console.log(req)
+    // console.log(token)
         // console.log(req.cookies)
         if(!token){
-            // console.log("no token")
+            console.log("no token")
             return res.status(403).json({
                 message:"no token found"
             })
@@ -78,6 +79,35 @@ exports.isStudent = async(req,res,next)=>{
         // console.log(student)
         // console.log(student)
         req.student = student;
+        next();
+    }catch(error){
+        console.log(error)
+        res.status(402).json({
+            message:"internal server error",
+            error:error.message
+        })
+    }
+}
+exports.isTeacher = async(req,res,next)=>{
+    try {
+        console.log(req.body)
+        const authHeader = req.body.headers['Authorization'];
+        console.log(authHeader)
+        const token = authHeader && authHeader.split(' ')[1];
+        if(!token){
+           console.log("no token")
+            return res.status(401).json({
+                message:"no token found"
+            })
+        }
+        console.log(token)
+        const teacher = await jwt.verify(token,process.env.JWT_SECRET);
+        if(!teacher){
+            return res.status(400).json({
+                message:"invalid token"
+            })
+        }
+        req.teacher = teacher;
         next();
     }catch(error){
         console.log(error)
