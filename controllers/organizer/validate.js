@@ -7,12 +7,12 @@ require('dotenv').config();
 exports.validate = async (req,res)=>{
     try{
         const { qrData } = req.body;
-        console.log(qrData)
-        console.log(typeof(qrData))  ;
+        // console.log(qrData)
+        // console.log(typeof(qrData))  ;
     // Ensure qrData is a string and not undefined
-    if (!qrData || typeof qrData !== 'string') {
-      throw new Error('Invalid data format');
-    }
+    // if (!qrData || typeof qrData !== 'string') {
+    //   throw new Error('Invalid data format');
+    // }
     const bytes = CryptoJS.AES.decrypt(qrData, process.env.JWT_SECRET);
     const decrypted = bytes.toString(CryptoJS.enc.Utf8);
 

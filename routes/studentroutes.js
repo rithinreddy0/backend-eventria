@@ -14,7 +14,7 @@ studentRouter.post("/info",isStudent,getinfo)
 studentRouter.post("/apply/:eventId",eventapply)
 studentRouter.post("/regesterd",isStudent,getregesterd)
 studentRouter.post("/update/:eventId",isStudent,applyupdate)
-studentRouter.post("/newletter",isStudent,createpermission)
+studentRouter.post("/newletter",createpermission)
 studentRouter.post("/appliedevents",isStudent,allappliedevents)
 studentRouter.post("/verify",isStudent,(req,res)=>{
     res.status(200).json({

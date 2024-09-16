@@ -38,12 +38,12 @@ exports.loginhod = async(req,res)=>{
                 message:"user hod not found"
             })
         }
-        console.log(password,hod);
+        // console.log(password,hod);
         // console.log(email,password,hod)
         const ismatch = await bcrypt.compare(password,hod.password);
 
         if(!ismatch){
-            return res.status(500).json({
+            return res.status(401).json({
                 message:"Incorrect password"
             })
         }

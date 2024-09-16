@@ -11,9 +11,9 @@ exports.createpermission = async (req,res)=>{
                 message:"data missing "
             })
         }
-        const student1 = req.student;
-        console.log(student1.id)
-        let permission = await Permission.create({subject,body,department,createdBy:student1.id});
+        // const student1 = req.student;
+        // console.log(student1.id)
+        let permission = await Permission.create({subject,body,department,});
         if(members){
             members.map(async(data)=>{
                 const student = await Student.findOne({name:data});

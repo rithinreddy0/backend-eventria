@@ -10,12 +10,7 @@ exports.getallletters = async (req,res)=>{
             })
         }
         const letters = await Permission.find({department,status:"pending"},{password:0}).populate('createdBy').populate("members");
-        letters.map((letter)=>{
-             letter.createdBy.password = ""
-            letter.members.map((object)=>{
-                 object.password="";
-            })
-        })
+        
         return res.status(201).json({
             data:letters,
             messaage:"Successfull"

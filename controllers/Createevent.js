@@ -2,7 +2,10 @@ const Event = require("../Models/Event");
 const Organizer = require('../Models/Organizer')
 exports.createEvent = async (req,res)=>{
     try{
+        // console.log(req)
         const {name,description,date,stime,etime,formcode,id} = req.body;
+        // console.log(req.files)
+        // console.log(image)
         // const organizer = req.organizer;
         // console.log(id)
         if(!name||!description||!date||!stime||!etime||!id){
