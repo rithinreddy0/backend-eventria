@@ -11,6 +11,7 @@ const { studentRouter } = require("./routes/studentroutes");
 const { cloudinaryConnect } = require("./config/Clodinary");
 const { hodRouter } = require("./routes/hodroutes");
 const teacherRouter = require("./routes/teacherroutes");
+const { forgotPassword, resetPassword } = require("./controllers/passwords/password");
 
 
 //constants
@@ -40,6 +41,10 @@ app.use("/organizer",organizerRouter)
 app.use("/student",studentRouter)
 app.use("/hod",hodRouter)
 app.use("/teacher",teacherRouter)
+
+app.post('/forgetpassword',forgotPassword);
+app.post('/resetpassword/:token',resetPassword);
 app.get("/",(req,res)=>{
     res.send("Hello World")
 })
+

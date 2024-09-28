@@ -9,7 +9,7 @@ exports.getallletters = async (req,res)=>{
                 message:"department not available"
             })
         }
-        const letters = await Permission.find({department,status:"pending"},{password:0}).populate('createdBy').populate("members");
+        const letters = await Permission.find({department},{password:0}).populate('createdBy').populate("members");
         
         return res.status(201).json({
             data:letters,
